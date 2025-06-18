@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil Pribadi & Hobby</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Material+Icons" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a3658 0%, #0891b2 100%);
+      color: #f9fafb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: #61dafb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #21a1c0;
+      outline: none;
+    }
+
+    /* Navigasi */
+    nav {
+      background-color: rgba(255,255,255,0.1);
+      padding: 16px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .nav-container {
+      max-width: 1120px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .nav-container a {
+      color: #f9fafb;
+    }
+
+    .container {
+      max-width: 1120px;
+      padding: 24px 16px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .profile {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 32px;
+      background: rgba(255 255 255 / 0.08);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+    .profile-picture {
+      flex: 0 0 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #61dafb;
+      box-shadow: 0 4px 16px rgba(6, 126, 186, 0.7);
+    }
+    .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .profile-info {
+      flex: 1;
+      min-width: 260px;
+    }
+    .profile-info h1 {
+      margin: 0 0 12px;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #dff6ff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+    .profile-info p {
+      margin: 0;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      color: #b9eaff;
+    }
+
+    .hobby {
+      background: rgba(255 255 255 / 0.08);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+    .hobby h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: #dff6ff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+    .hobby-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 32px;
+    }
+    .hobby-item {
+      background: rgba(255 255 255 / 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+    .hobby-item:hover,
+    .hobby-item:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 24px rgba(6, 126, 186, 0.6);
+    }
+    .hobby-image {
+      width: 100%;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .hobby-content {
+      padding: 16px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .hobby-content h3 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      color: #dff6ff;
+    }
+    .hobby-content a.video-link {
+      margin-top: auto;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #61dafb;
+    }
+    .hobby-content a.video-link .material-icons {
+      font-size: 20px;
+    }
+    .hobby-content a.video-link:hover,
+    .hobby-content a.video-link:focus {
+      color: #21a1c0;
+      outline: none;
+    }
+
+    footer {
+      background: #04293a;
+      color: #a9cfe7;
+      padding: 32px 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .footer-container {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .footer-section {
+      min-width: 220px;
+      flex: 1 1 300px;
+    }
+    .footer-section h4 {
+      margin-bottom: 16px;
+      font-size: 1.25rem;
+      color: #8bc6f4;
+    }
+    .footer-section a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: #a9cfe7;
+    }
+    .footer-section a .material-icons {
+      font-size: 20px;
+      color: #61dafb;
+    }
+    .footer-section a:hover,
+    .footer-section a:focus {
+      color: #21a1c0;
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+      .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .profile-info {
+        min-width: 0;
+      }
+      .hobby-gallery {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-section {
+        flex: initial;
+        min-width: auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigasi -->
+  <nav>
+    <div class="nav-container">
+      <a href="#profil">Profil</a>
+      <a href="#hobi">Hobi</a>
+      <a href="#kontak">Kontak</a>
+      <a href="#sosial">Sosial Media</a>
+    </div>
+  </nav>
+
+  <main class="container" role="main">
+
+    <!-- Profil Section -->
+    <section class="profile" id="profil" aria-label="Profil Pribadi">
+      <div class="profile-picture">
+        <img src="rangga.jpg" alt="Foto profil pribadi dengan latar belakang biru dan teks putih" />
+      </div>
+      <div class="profile-info">
+        <h1>Rangga Raditya</h1>
+        <p>Halo Perkenalkan Nama saya Putu Rangga Raditya Putra bisa di panggil Raditya aku lahir di Tahun 2006-5-22 dan mbti aku ISFP-T </p>
+      </div>
+    </section>
+
+    <!-- Hobby Section -->
+    <section class="hobby" id="hobi" aria-label="Hobby">
+  <h2>Hobby Saya</h2>
+  <div class="hobby-gallery">
+
+    
+
+    
+    </a>
+  </div>
+</article>
+<article class="hobby-item" tabindex="0">
+  <div class="hobby-image">
+    <img src="catur.jpg" alt="Catur" style="width: 100%; height: 180px; object-fit: cover;">
+  </div>
+  <div class="hobby-content">
+    <h3>CATUR</h3>
+    <p>Saya sangat senang dan suka dengan game berstrategi terutama catur.</p>
+    <!-- Video YouTube langsung tampil -->
+    <div class="video-embed" style="margin-top: 10px;">
+      <iframe width="100%" height="315" 
+        src="https://www.youtube.com/embed/4zFa4UdfgD8" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</article>
+
+</div>
+
+
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-section" id="kontak" aria-label="Kontak Pribadi">
+        <h4>Kontak Pribadi</h4>
+        <a href="mailto:radityaputu626@gmail.com">
+          <span class="material-icons">email</span>
+          radityaputu626@gmail.com
+        </a>
+        <a href="tel:+628123456789">
+          <span class="material-icons">phone</span>
+          082144942827
+        </a>
+      </div>
+      <div class="footer-section" id="sosial" aria-label="Alamat Sosial Media">
+        <h4>Sosial Media</h4>
+        <a href="https://www.tiktok.com/@xiwwww123?_t=ZS-8xFpUbHWbP2&_r=1" target="_blank">
+          <span class="material-icons">music_note</span>
+          TikTok
+        </a>
+        <a href="https://www.instagram.com/lah_tra_/?igsh=MWwzbmtmbTlsaHV6ZQ%3D%3D#" target="_blank">
+          <span class="material-icons">camera_alt</span>
+          Instagram
+          
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
